@@ -1,0 +1,164 @@
+
+digraph protobuf {
+    rankdir=LR
+    fontname = "Bitstream Vera Sans"
+    fontsize = 9
+    node [
+        shape = record
+        fontname = "Bitstream Vera Sans"
+        fontsize = 9
+    ]
+    edge [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 9
+        arrowhead = "empty"
+    ]
+
+    CanGenerateCSRRequest [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>CanGenerateCSRRequest</B></TD></TR><TR><TD >1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;enum&gt;</FONT></TD><TD ALIGN="LEFT" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"  ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="3" ALIGN="LEFT">key_type</TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[0]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">KT_UNKNOWN</FONT></I></TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[1]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">KT_RSA</FONT></I></TD></TR></TABLE></TD></TR><TR><TD >2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;enum&gt;</FONT></TD><TD ALIGN="LEFT" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"  ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="3" ALIGN="LEFT">certificate_type</TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[0]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">CT_UNKNOWN</FONT></I></TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[1]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">CT_X509</FONT></I></TD></TR></TABLE></TD></TR><TR><TD >3</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;uint32&gt;</FONT></TD><TD ALIGN="LEFT" >key_size</TD></TR></TABLE>>
+    ]
+
+
+    Certificate [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>Certificate</B></TD></TR><TR><TD >1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;enum&gt;</FONT></TD><TD ALIGN="LEFT" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"  ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="3" ALIGN="LEFT">type</TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[0]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">CT_UNKNOWN</FONT></I></TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[1]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">CT_X509</FONT></I></TD></TR></TABLE></TD></TR><TR><TD >2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;bytes&gt;</FONT></TD><TD ALIGN="LEFT" >certificate</TD></TR></TABLE>>
+    ]
+
+
+    RotateCertificateRequest [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>RotateCertificateRequest</B></TD></TR><TR><TD  PORT="L_generate_csr">1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_generate_csr">generate_csr</TD></TR><TR><TD  PORT="L_load_certificate">2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_load_certificate">load_certificate</TD></TR><TR><TD  PORT="L_finalize_rotation">3</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_finalize_rotation">finalize_rotation</TD></TR></TABLE>>
+    ]
+
+
+    GetCertificatesResponse [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>GetCertificatesResponse</B></TD></TR><TR><TD  PORT="L_certificate_info">1</TD><TD TITLE="repeated">[0..n]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_certificate_info">certificate_info</TD></TR></TABLE>>
+    ]
+
+
+    GenerateCSRResponse [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>GenerateCSRResponse</B></TD></TR><TR><TD  PORT="L_csr">1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_csr">csr</TD></TR></TABLE>>
+    ]
+
+
+    InstallCertificateRequest [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>InstallCertificateRequest</B></TD></TR><TR><TD  PORT="L_generate_csr">1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_generate_csr">generate_csr</TD></TR><TR><TD  PORT="L_load_certificate">2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_load_certificate">load_certificate</TD></TR></TABLE>>
+    ]
+
+
+    RevokeCertificatesRequest [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>RevokeCertificatesRequest</B></TD></TR><TR><TD >1</TD><TD TITLE="repeated">[0..n]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >certificate_id</TD></TR></TABLE>>
+    ]
+
+
+    LoadCertificateRequest [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>LoadCertificateRequest</B></TD></TR><TR><TD  PORT="L_certificate">1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_certificate">certificate</TD></TR><TR><TD  PORT="L_key_pair">2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_key_pair">key_pair</TD></TR><TR><TD >3</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >certificate_id</TD></TR><TR><TD  PORT="L_ca_certificates">4</TD><TD TITLE="repeated">[0..n]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_ca_certificates">ca_certificates</TD></TR></TABLE>>
+    ]
+
+
+    GenerateCSRRequest [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>GenerateCSRRequest</B></TD></TR><TR><TD  PORT="L_csr_params">1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_csr_params">csr_params</TD></TR><TR><TD >2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >certificate_id</TD></TR></TABLE>>
+    ]
+
+
+    CertificateInfo [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>CertificateInfo</B></TD></TR><TR><TD >1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >certificate_id</TD></TR><TR><TD  PORT="L_certificate">2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_certificate">certificate</TD></TR><TR><TD  PORT="L_endpoints">3</TD><TD TITLE="repeated">[0..n]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_endpoints">endpoints</TD></TR><TR><TD >4</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;int64&gt;</FONT></TD><TD ALIGN="LEFT" >modification_time</TD></TR></TABLE>>
+    ]
+
+
+    CSRParams [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>CSRParams</B></TD></TR><TR><TD >1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;enum&gt;</FONT></TD><TD ALIGN="LEFT" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"  ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="3" ALIGN="LEFT">type</TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[0]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">CT_UNKNOWN</FONT></I></TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[1]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">CT_X509</FONT></I></TD></TR></TABLE></TD></TR><TR><TD >2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;uint32&gt;</FONT></TD><TD ALIGN="LEFT" >min_key_size</TD></TR><TR><TD >3</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;enum&gt;</FONT></TD><TD ALIGN="LEFT" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"  ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="3" ALIGN="LEFT">key_type</TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[0]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">KT_UNKNOWN</FONT></I></TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[1]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">KT_RSA</FONT></I></TD></TR></TABLE></TD></TR><TR><TD >4</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >common_name</TD></TR><TR><TD >5</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >country</TD></TR><TR><TD >6</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >state</TD></TR><TR><TD >7</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >city</TD></TR><TR><TD >8</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >organization</TD></TR><TR><TD >9</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >organizational_unit</TD></TR><TR><TD >10</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >ip_address</TD></TR><TR><TD >11</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >email_id</TD></TR></TABLE>>
+    ]
+
+
+    FinalizeRequest [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>FinalizeRequest</B></TD></TR></TABLE>>
+    ]
+
+
+    Endpoint [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>Endpoint</B></TD></TR><TR><TD >1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;enum&gt;</FONT></TD><TD ALIGN="LEFT" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"  ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="3" ALIGN="LEFT">type</TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[0]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">EP_UNSPECIFIED</FONT></I></TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[1]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">EP_IPSEC_TUNNEL</FONT></I></TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[2]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">EP_DAEMON</FONT></I></TD></TR></TABLE></TD></TR><TR><TD >2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >endpoint</TD></TR></TABLE>>
+    ]
+
+
+    LoadCertificateResponse [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>LoadCertificateResponse</B></TD></TR></TABLE>>
+    ]
+
+
+    InstallCertificateResponse [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>InstallCertificateResponse</B></TD></TR><TR><TD  PORT="L_generated_csr">1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_generated_csr">generated_csr</TD></TR><TR><TD  PORT="L_load_certificate">2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_load_certificate">load_certificate</TD></TR></TABLE>>
+    ]
+
+
+    GetCertificatesRequest [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>GetCertificatesRequest</B></TD></TR></TABLE>>
+    ]
+
+
+    KeyPair [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>KeyPair</B></TD></TR><TR><TD >1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;bytes&gt;</FONT></TD><TD ALIGN="LEFT" >private_key</TD></TR><TR><TD >2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;bytes&gt;</FONT></TD><TD ALIGN="LEFT" >public_key</TD></TR></TABLE>>
+    ]
+
+
+    CertificateRevocationError [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>CertificateRevocationError</B></TD></TR><TR><TD >1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >certificate_id</TD></TR><TR><TD >2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >error_message</TD></TR></TABLE>>
+    ]
+
+
+    CanGenerateCSRResponse [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>CanGenerateCSRResponse</B></TD></TR><TR><TD >4</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;bool&gt;</FONT></TD><TD ALIGN="LEFT" >can_generate</TD></TR></TABLE>>
+    ]
+
+
+    CSR [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>CSR</B></TD></TR><TR><TD >1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;enum&gt;</FONT></TD><TD ALIGN="LEFT" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"  ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="3" ALIGN="LEFT">type</TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[0]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">CT_UNKNOWN</FONT></I></TD></TR><TR><TD WIDTH="10"></TD><TD ALIGN="LEFT"><FONT POINT-SIZE="7">[1]</FONT></TD><TD ALIGN="LEFT"><I><FONT POINT-SIZE="7">CT_X509</FONT></I></TD></TR></TABLE></TD></TR><TR><TD >2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;bytes&gt;</FONT></TD><TD ALIGN="LEFT" >csr</TD></TR></TABLE>>
+    ]
+
+
+    RevokeCertificatesResponse [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>RevokeCertificatesResponse</B></TD></TR><TR><TD >1</TD><TD TITLE="repeated">[0..n]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;string&gt;</FONT></TD><TD ALIGN="LEFT" >revoked_certificate_id</TD></TR><TR><TD  PORT="L_certificate_revocation_error">2</TD><TD TITLE="repeated">[0..n]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_certificate_revocation_error">certificate_revocation_error</TD></TR></TABLE>>
+    ]
+
+
+    RotateCertificateResponse [
+        shape = plaintext
+        label = <<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" ALIGN="LEFT" VALIGN="TOP"><TR><TD COLSPAN="4"><B>RotateCertificateResponse</B></TD></TR><TR><TD  PORT="L_generated_csr">1</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_generated_csr">generated_csr</TD></TR><TR><TD  PORT="L_load_certificate">2</TD><TD TITLE="optional">[0..1]</TD><TD ALIGN="LEFT"><FONT COLOR="#444444">&lt;message&gt;</FONT></TD><TD ALIGN="LEFT"  PORT="R_load_certificate">load_certificate</TD></TR></TABLE>>
+    ]
+		RotateCertificateRequest:R_generate_csr -> GenerateCSRRequest
+		RotateCertificateRequest:R_load_certificate -> LoadCertificateRequest
+		RotateCertificateRequest:R_finalize_rotation -> FinalizeRequest
+		GetCertificatesResponse:R_certificate_info -> CertificateInfo
+		GenerateCSRResponse:R_csr -> CSR
+		InstallCertificateRequest:R_generate_csr -> GenerateCSRRequest
+		InstallCertificateRequest:R_load_certificate -> LoadCertificateRequest
+		LoadCertificateRequest:R_certificate -> Certificate
+		LoadCertificateRequest:R_key_pair -> KeyPair
+		LoadCertificateRequest:R_ca_certificates -> Certificate
+		GenerateCSRRequest:R_csr_params -> CSRParams
+		CertificateInfo:R_certificate -> Certificate
+		CertificateInfo:R_endpoints -> Endpoint
+		InstallCertificateResponse:R_generated_csr -> GenerateCSRResponse
+		InstallCertificateResponse:R_load_certificate -> LoadCertificateResponse
+		RevokeCertificatesResponse:R_certificate_revocation_error -> CertificateRevocationError
+		RotateCertificateResponse:R_generated_csr -> GenerateCSRResponse
+		RotateCertificateResponse:R_load_certificate -> LoadCertificateResponse}
