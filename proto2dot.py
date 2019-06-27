@@ -253,7 +253,7 @@ def main():
 
     dot_filename = filename + '.dot'
 
-    logging.info("Saving dot file to '%s'..." % (dot_filename,))
+    logging.info("Saving dot file to '%s'" % (dot_filename,))
     f = open(dot_filename, "wb")
     f.write( graph )
     f.close()
