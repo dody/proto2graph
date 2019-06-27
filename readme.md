@@ -1,4 +1,4 @@
-# proto2dot
+# proto2graph
 Generate [GraphViz] files from [Google Protocol Buffer] definitions. 
 
 ## Example results:
@@ -13,16 +13,16 @@ Generate [GraphViz] files from [Google Protocol Buffer] definitions.
 
 1) Compile your proto files. If you dont know how, here is tutorial: https://developers.google.com/protocol-buffers/docs/pythontutorial
 
-2) Feed python files to `proto2dot.py` to generate graphviz `.dot` files
+2) Feed python files to `proto2graph.py` to generate graphviz `.dot` files
         
-        $ python proto2dot.py cert_pb2.py
+        $ python proto2graph.py cert_pb2.py
 
 3) Visualize `.dot` files using offline tools or use simple web app https://dreampuf.github.io/GraphvizOnline 
 
 
 ## Help
 ~~~
-Usage: proto2dot.py [options] <compiled proto files *.py>
+Usage: proto2graph.py [options] <compiled proto files *.py>
 
 Options:
   -h, --help            show this help message and exit
