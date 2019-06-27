@@ -36,7 +36,6 @@ class Proto2Dot(object):
     messages = None
 
     def __init__(self, font_type,font_size,exclude, orientation):
-        # self.options = options
         self.font_type = font_type
         self.font_size = font_size
         self.exclude = exclude
@@ -83,13 +82,14 @@ class Proto2Dot(object):
     def is_excluded(self, name):
         if self.exclude:
             for p in self.exclude:
-                if ( re.match( ".*"+p+".*", name, re.IGNORECASE ) is not None ):
+                # if ( re.match( ".*"+name+".*", p, re.IGNORECASE ) is not None ):
+                if ( name in p ):
                     return True
         return False
 
     def process_message_class(self, message):
         if self.is_excluded(message.name):
-            logging.debug("message '%s' excluded" % (message.name, ) )
+            logging.info("Excluding whole message: %s" % (message.name, ) )
             return
 
         logging.debug("processing message %s" % (message.name,))
@@ -108,7 +108,7 @@ class Proto2Dot(object):
         for field in message.fields:
 
             if self.is_excluded(field.name):
-                logging.debug("field '%s->%s' excluded" % (message.name, field.name, ) )
+                logging.info("field '%s->%s' excluded" % (message.name, field.name, ) )
                 continue
 
             self.check_port_side( field )
@@ -123,6 +123,8 @@ class Proto2Dot(object):
                 if not self.is_excluded(field.message_type.name):
                     self.output["connections"].append( "\t\t"+ message.name +":"+ port + " -> " + field.message_type.name )
                     logging.debug("Creating connection to {}".format(field.message_type.name) )
+                else:
+                    logging.info("Excluding Connection: {} -> {}".format(message.name, field.message_type.name) )
             else:
                 port_left_tag = ""
                 port_right_tag = ""
@@ -176,7 +178,6 @@ class Proto2Dot(object):
 
     def generate_dot_graph(self):
         f = StringIO.StringIO()
-        # rankdir=LR
         header = """
 digraph protobuf {
     rankdir=%(orientation)s
@@ -212,20 +213,28 @@ def main():
     parser = OptionParser()
     parser.usage = "%prog [options] <compiled proto files *.py>"
 
+    parser.add_option( "-r", "--orientation", dest="orientation", help="Orientation of graph: TD = Top -> Down, LR = Left -> Right", type="string", default="LR")
     parser.add_option( "-f", "--font", dest="font_type", help="Font type", type="string", default="Bitstream Vera Sans" )
     parser.add_option( "--font-size", dest="font_size", help="Font size", type="int", default=9 )
     parser.add_option( "-x", "--exclude", dest="exclude", help="Exclude field/message names matching the specified regexp pattern", type="string", action="append")
-    parser.add_option( "-r", "--orientation", dest="orientation", help="Orientation of graph, TD = Top -> Down, LR = Left -> Right ", type="string", default="LR")
 
     parser.add_option( "-d", "--debug", dest="debug", help="Print debug info", action="store_true", default=False)
     parser.add_option( "-o", "--output", dest="output", help="Output directory", type="string", default="." )
 
-    (options, args) = parser.parse_args()
-    
-    # filenames = ['gnmi_070_pb2', 'cert_pb2']
-    filenames = ['cert_pb2']
+    for option in parser.option_list:
+        if option.default != ("NO", "DEFAULT"):
+            option.help += (" " if option.help else "") + "[default: %default]"
 
-    logging.basicConfig( level = logging.DEBUG if options.debug else logging.INFO )
+    (options, args) = parser.parse_args()
+    log_format = '%(levelname)s: %(message)s'
+    logging.basicConfig(level = logging.DEBUG if options.debug else logging.INFO, format=log_format)
+
+    if len(args) == 0:
+        parser.print_help()
+        exit(0)
+
+    logging.debug(options)
+    
 
     
     o = Proto2Dot(
@@ -235,20 +244,16 @@ def main():
         orientation=options.orientation
         )
 
-    print(options)
-    for x in args:
-        print("printing args {}".format(x))
+    for filename in args:
+        logging.info("Processing file {}".format(filename))
+        o.process_py(filename)
 
-    for filename in filenames:
-        print(filename)
-        o.process_py(filename + '.py')
-        
-
+    # Generate graphviz .dot file
     graph = o.generate_dot_graph()
 
-    # Generate graphviz file
     dot_filename = filename + '.dot'
 
+    logging.info("Saving dot file to '%s'..." % (dot_filename,))
     f = open(dot_filename, "wb")
     f.write( graph )
     f.close()
@@ -257,6 +262,4 @@ def main():
 
 
 if __name__ == "__main__":
-    log_format = '|%(asctime)s -[%(levelname)s] (%(threadName)-10s) (%(name)s)| %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_format)
     sys.exit( main() )
