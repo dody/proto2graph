@@ -41,8 +41,5 @@ Options:
                         Output directory [default: .]
 ~~~
 
-
-Online .dot compilator 
-
 [GraphViz]: http://www.graphviz.org/
 [Google Protocol Buffer]: https://code.google.com/p/protobuf/
