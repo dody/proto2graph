@@ -46,5 +46,10 @@ Options:
                         Output directory [default: .]
 ~~~
 
+## Credits
+
+Project is based on <https://github.com/lazics/proto2dot>
+I did NOT make a fork becasue I have removed features from original project such as compiling proto file and compiling dot file into image. Code is smaller and it was easier to catch bugs.
+
 [GraphViz]: http://www.graphviz.org/
 [Google Protocol Buffer]: https://code.google.com/p/protobuf/
